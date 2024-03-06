@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/nWstyles.css"/>
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+</head>
+<body>
+<%- include('header.ejs')%>
+    <div class="header-sc">
+        <ul>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">최근 본 작품</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">관심 작품</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="">
+                    <span class="sub_txt">내 작품</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--        <div class="content">-->
+
+
+    <div class="content">
+        <div class="write_area">
+            <div class="header_area">
+                <h2 class="htxt_write_notice">회차 쓰기</h2>
+                <div class="work_menu">
+                    <button onclick="goToLink('https://www.example1.com')">작품 정보 수정</button>
+                    <button onclick="goToLink('https://www.example2.com')">작품 페이지</button>
+                </div>
+            </div>
+
+
+            <div class="write_cont">
+                <h3 class="work_tit">여기에 제목이 동적구현</h3>
+                <form id="writeForm" action="/add" method="post">
+                    <fieldset>
+                        <ul class="write_from">
+                            <li>
+
+                                <input type="text" id="inputWriteTitle" name="writeTitle" class="input_txt" placeholder="제목">
+
+                            </li>
+                            <li class="content">
+                                <div class="del_if_space">
+                <textarea cols="30" rows="5" id="inputContent" class="txtarea" name="writeContent" placeholder="내용">
+
+                </textarea>
+                                </div>
+
+
+                            </li>
+
+                        </ul>
+
+                        <div class="bt_area v2">
+                            <button onclick="goToLink('https://www.example3.com')">취소</button>
+                            <button type="submit">등록</button>
+
+                        </div>
+
+
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <main>
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+
+<script>
+    window.onload = function () {
+
+        // 스크롤이 내려가면 네비바가 고정되
+
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+
+
+    }
+
+
+    // work_menu 버튼 스크립트
+
+    function goToLink(linkUrl) {
+        window.location.href = linkUrl;
+    }
+
+    // bt_area v2 버튼 스크립트
+    function submitFormAndGoToLink(link) {
+
+
+        // 폼을 제출
+        document.getElementById("writeForm").submit();
+
+        // 링크로 이동
+        window.location.href = link;
+    }
+
+
+</script>
+
+</body>
+</html>

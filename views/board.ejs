@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/template_w.css"/>
+    <link rel="stylesheet" href="/css/stylemy.css">
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+</head>
+<body>
+<%-include('header.ejs')%>
+
+
+
+<main>
+
+        <div class="contents container">
+<!--////////////////////////////////////////////////-->
+
+
+            <div class="board_wrap">
+                <div class="board_title">
+                    <strong>리뷰</strong>
+                    <!--            <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>-->
+                </div>
+                <div class="board_list_wrap">
+                    <div class="board_list">
+                        <div class="top">
+                            <div class="num">번호</div>
+                            <div class="title">제목</div>
+                            <div class="writer">글쓴이</div>
+                            <div class="date">작성일</div>
+                            <div class="count">조회</div>
+                        </div>
+                        <%  for( let i =0; i<writes.length; i++ ){ %>
+                            <div>
+                                <div class="num"> <%= writes[i][0]  %> </div>
+                                <div class="title">  <a href="/detailPage/<%=writes[i][0] %>"><%= writes[i][1]  %>  </a>  </div>
+                                <div class="writer"> <%= writes[i][2]  %> </div>
+
+                            </div>
+                        <%   }   %>
+
+                    </div>
+                    <div class="board_page">
+                        <!--            <a href="#" class="bt first"><<</a>-->
+
+                        <% if (currentPage > 1) { %>
+                            <a class="bt_prev" href="/board/?pageee=<%= currentPage - 1 %>"><</a>
+                        <% } %>
+
+                        <!--            <a href="#" class="bt prev"><</a>-->
+                        <!--            <a href="#" class="num on">1</a>-->
+                        <!--            <a href="#" class="num">2</a>-->
+                        <!--            <a href="#" class="num">3</a>-->
+                        <!--            <a href="#" class="num">4</a>-->
+                        <!--            <a href="#" class="num">5</a>-->
+
+                        <% for (let i = startPage; i <= endPage; i++) { %>
+                            <% if (i === currentPage) { %>
+                                <span class="num on"><%= i %></span>
+                            <% } else { %>
+                                <a class="num" href="/board/?pageee=<%= i %>"><%= i %></a>
+                            <% } %>
+                        <% } %>
+
+
+                        <% if ( (totalPages - currentPage +1) > maxPageNumber ) { %>
+                            <a  class="bt_next" href="/board/?pageee=<%= currentPage + 1 %>">></a>
+                        <% } %>
+
+
+
+                        <!--            <a href="#" class="bt next">></a>-->
+                        <!--            <a href="#" class="bt last">>></a>-->
+                    </div>
+                    <div class="bt_wrap">
+                        <a href="/writing" class="on">등록</a>
+                        <!--<a href="#">수정</a>-->
+                    </div>
+                </div>
+            </div>
+
+
+
+<!--/////////////////////////////////////////-->
+        </div>
+
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+<script>
+    window.onload = function(){
+
+//스크롤이 내려가면 네비바가 고정되게
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

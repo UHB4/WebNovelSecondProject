@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/template_w.css"/>
+    <link rel="stylesheet" href="/css/stylemy.css">
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+</head>
+<body>
+<div id="wrap">
+    <header>
+
+    </header>
+    <nav>
+        <div id="nav" class="container">
+            <div class="nav_inner">
+                <div class="nav__logo">
+                    <a href="/home">WEB <em>소설</em></a>
+                </div>
+                <div class="nav__search">
+                    <input type="text" class="search" value="작가명">
+                    <button class="sch_btn" type="submit">보내기</button>
+                </div>
+                <div class="nav__manu">
+                    <ul>
+                        <li><a href="#" id="red">월간 베스트</a></li>
+                        <li><a href="#">ALL</a></li>
+                        <li><a href="/board">리뷰 </a></li>
+                        <!--                        <li><a href="#">리뷰 </a></li>-->
+                        <!--                        <li><a href="#">나도 작가</a></li>-->
+                        <li><a href="#">MY</a></li>
+                        <li><a href="#">공지 사항</a></li>
+                    </ul>
+                </div>
+                <div class="nav__member">
+                    <!--                    <a href="#">로그인</a>-->
+                    <input type="checkbox" id="menuicon"/>
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <!--                    사이드바-->
+                        <div class="sidebar_cont1">
+                            <a href="#">로그인</a>
+
+                        </div>
+                        <div class="sidebar_cont2">ee</div>
+                        <div class="sidebar_cont3">ee</div>
+                        <div class="sidebar_cont4">ee</div>
+                        <div class="sidebar_cont5">ee</div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <main>
+
+        <div class="contents container">
+<!--///////////////////////////////////////////////-->
+
+            <div class="board_wrap">
+                <div class="board_title">
+                    <strong>리뷰</strong>
+                    <p> 욕설과 비속어는 자제 부탁드립니다.</p>
+                </div>
+                <div class="board_view_wrap">
+                    <div class="board_view">
+                        <div class="title">
+                            <%=detail_contttt.title%>
+                        </div>
+                        <div class="info">
+                            <dl>
+                                <dt>번호</dt>
+                                <dd> <%=detail_contttt.id%>   </dd>
+                            </dl>
+                            <dl>
+                                <dt>글쓴이</dt>
+                                <dd><%=detail_contttt.author%></dd>
+                            </dl>
+                            <!--                <dl>-->
+                            <!--                    <dt>작성일</dt>-->
+                            <!--                    <dd>2021.1.16</dd>-->
+                            <!--                </dl>-->
+                            <!--                <dl>-->
+                            <!--                    <dt>조회</dt>-->
+                            <!--                    <dd>33</dd>-->
+                            <!--                </dl>-->
+                        </div>
+                        <div class="cont">
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            <%=detail_contttt.title%><br>
+                            글 내용이 들어갑니다<br>
+                            글 내용이 들어갑니다<br>
+                            글 내용이 들어갑니다<br>
+                            글 내용이 들어갑니다<br>
+                            글 내용이 들어갑니다<br>
+                            글 내용이 들어갑니다<br>
+                            글 내용이 들어갑니다
+                        </div>
+                    </div>
+                    <div class="bt_wrap">
+                        <a href="/board" class="on">목록</a>
+                        <a href="/edit/<%=detail_contttt.id%>">수정</a>
+                        <a href="/deletegogo/<%= detail_contttt.id %>" class="on">삭제</a>
+<!--                        삭제 추가함-->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+<!--    ///////////////////////////////////////        -->
+        </div>
+
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+<script>
+    window.onload = function(){
+
+//스크롤이 내려가면 네비바가 고정되게
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

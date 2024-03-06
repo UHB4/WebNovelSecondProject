@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/am_view.css"/>
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<%- include('header.ejs') %>
+
+<div class="header-sc">
+    <ul>
+        <li>
+            <a href="#" class="">
+                <span class="sub_txt">최근 본 작품</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="">
+                <span class="sub_txt">관심 작품</span>
+            </a>
+        </li>
+        <li>
+            <a href="/myNovelList" class="">
+                <span class="sub_txt">내 작품</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="novel-container">
+    <div class="novel-header">
+        <div class="novel-title">
+            <h4 class="novel-title2"><%= view[0][4] %></h4></div>
+        <div class="novel-chapter"><%= view[0][2] %></div>
+    </div>
+
+    <div class="novel-content">
+        <!-- 여기에 소설 내용을 넣어주세요. -->
+        <p> <%= content.toString('utf8') %></p>
+    </div>
+
+    <div class="navigation-buttons">
+        <button class="navigation-button"><img src="left-arrow.png" alt="Previous"></button>
+        <button class="navigation-button"><img src="right-arrow.png" alt="Next"></button>
+    </div>
+</div>
+
+<div class="comment-section">
+    <h2>댓글 <span id="commentCount">0</span></h2>
+    <!-- Example of a comment -->
+
+
+
+    <div class="comment">
+        <% for(let i=0; i < comment.length; i++ ){%>
+            <div class="comment-header">
+                <span class="username"><%=comment[i][3]%></span>
+                <div class="comment-body">
+                    <p><%=comment[i][2]%></p>
+                </div>
+
+                <div class="comment-actions">
+
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <img src="img/like.png" alt="공감">
+                        <span class="likes">0</span>
+                    </button>
+                    <button class="dislike-btn" onclick="toggleDislike(this)">
+                        <img src="img/dislike.png" alt="비공감">
+                        <span class="dislikes">0</span>
+                    </button>
+                    <button class="reply-btn" onclick="toggleReplyForm(this)">답글</button>
+                    <button class="edit-btn" onclick="openEditCommentModal()">수정</button>
+                    <button class="delete-btn" onclick="openDeleteCommentModal()">삭제</button>
+                </div>
+                <div class="reply-form">
+                    <input type="text" class="reply-input" placeholder="답글 작성">
+                    <button class="submit-reply-btn" onclick="submitReply(this)">답글 작성</button>
+                </div>
+            </div>
+        <%}%>
+
+
+    </div>
+
+
+
+    <form id="commentForm" action="/add-comment" method="POST">
+        <textarea name="commentContent" placeholder="댓글을 입력하세요"></textarea>
+        <button type="submit">댓글 작성</button>
+    </form>
+</div>
+
+
+<!-- 클라이언트 측 스크립트 -->
+<script>
+    async function checkLoginStatus() {
+        const response = await fetch('/check-login-status', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Successful response:', result.loggedIn);
+            const username = result.username1;
+
+            // 댓글 작성 폼 제출 시
+            document.getElementById('commentForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const commentContent = document.querySelector('.comment-section textarea[name="commentContent"]').value;
+
+                if (!username || username.trim() === '') {
+                    const confirmLogin = confirm('로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?');
+
+                    if (confirmLogin) {
+                        // 이전 페이지 URL을 확인하고, 로그인 페이지로 이동
+                        const redirectUrl = document.referrer;
+                        console.log('Redirecting to login with referrer:', redirectUrl);
+                        window.location.href = '/login?redirect=' + encodeURIComponent(redirectUrl);
+                    }
+                    return;
+                }
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const epId = urlParams.get('epId');
+
+                const response = await fetch('/add-comment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        commentContent: commentContent,
+                        epId: epId,
+                        username: username,
+                    }),
+                });
+
+                if (response.ok) {
+                    // 댓글 작성이 성공하면 이전 페이지로 이동
+                    window.location.reload();
+                } else {
+                    alert('댓글 작성에 실패했습니다.');
+                }
+            });
+        } else {
+            const confirmLogin = confirm('로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?');
+
+            if (confirmLogin) {
+                // 이전 페이지 URL을 확인하고, 로그인 페이지로 이동
+                const redirectUrl = document.referrer;
+                console.log('Redirecting to login with referrer:', redirectUrl);
+                window.location.href = '/login?redirect=' + encodeURIComponent(redirectUrl);
+            }
+        }
+    }
+
+    // 페이지 로딩 시 로그인 여부 확인 수행
+    checkLoginStatus();
+</script>
+
+</div>
+
+
+<footer>
+
+</footer>
+</div>
+
+
+<script>
+    window.onload = function () {
+
+        // 스크롤이 내려가면 네비바가 고정되
+
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+        /////////////////cont1의 버튼식 슬라이드////////////////////
+
+
+    }
+
+
+    // work_menu 버튼 스크립트
+
+    function toggleReplyForm(button) {
+        var replyForm = button.parentElement.nextElementSibling;
+        replyForm.style.display = (replyForm.style.display === 'none' || replyForm.style.display === '') ? 'block' : 'none';
+    }
+
+    function submitReply(button) {
+        var replyForm = button.parentElement;
+        var replyInput = replyForm.querySelector('.reply-input').value;
+
+        if (replyInput.trim() !== '') {
+            var comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.innerHTML = `
+           <div class="comment-header">
+            <span class="username">User123</span>
+
+        </div>
+        <div class="comment-body">
+            <p>This is a comment.</p>
+        </div>
+        <div class="comment-actions">
+            <button class="like-btn" onclick="toggleLike(this)">
+                <img src="img/like.png" alt="공감">
+                <span class="likes">0</span>
+            </button>
+            <button class="dislike-btn" onclick="toggleDislike(this)">
+                <img src="img/dislike.png" alt="비공감">
+                <span class="dislikes">0</span>
+            </button>
+            <button class="reply-btn" onclick="toggleReplyForm(this)">답글</button>
+        </div>
+        <div class="reply-form">
+            <input type="text" class="reply-input" placeholder="답글 작성">
+            <button class="submit-reply-btn" onclick="submitReply(this)">답글 작성</button>
+        </div>
+        `;
+
+            replyForm.parentElement.appendChild(comment);
+            replyForm.style.display = 'none';
+        }
+    }
+
+
+    function toggleLike(button) {
+        var likes = button.querySelector('.likes');
+        var likesCount = parseInt(likes.innerText);
+
+        if (button.classList.contains('liked')) {
+            button.classList.remove('liked');
+            likesCount -= 1;
+        } else {
+            button.classList.add('liked');
+            likesCount += 1;
+        }
+
+        likes.innerText = likesCount;
+    }
+
+    function toggleDislike(button) {
+        var dislikes = button.querySelector('.dislikes');
+        var dislikesCount = parseInt(dislikes.innerText);
+
+        if (button.classList.contains('disliked')) {
+            button.classList.remove('disliked');
+            dislikesCount -= 1;
+        } else {
+            button.classList.add('disliked');
+            dislikesCount += 1;
+        }
+
+        dislikes.innerText = dislikesCount;
+    }
+
+    // -------------------------------유저 아이디 보안처리 --------------------
+    document.addEventListener('DOMContentLoaded', function () {
+        var usernameElements = document.querySelectorAll('.comment .username');
+
+        usernameElements.forEach(function (usernameElement) {
+            var originalUsername = usernameElement.innerText;
+
+            if (originalUsername.length >= 2) {
+                var hiddenPart = originalUsername.substring(1, originalUsername.length - 1).replace(/./g, '*');
+                var hiddenUsername = originalUsername[0] + hiddenPart + originalUsername[originalUsername.length - 1];
+
+                usernameElement.innerHTML = hiddenUsername;
+            }
+        });
+    });
+    let currentCommentId; // 현재 수정 또는 삭제 중인 댓글의 ID
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

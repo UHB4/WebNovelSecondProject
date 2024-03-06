@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/sWstyles.css"/>
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+</head>
+<body>
+<div id="wrap">
+    <header>
+    </header>
+    <nav>
+        <div id="nav" class="container">
+            <div class="nav_inner">
+                <div class="nav__logo">
+                    <a href="lay_out10.html">WEB <em>소설</em></a>
+                </div>
+                <div class="nav__search">
+                    <input type="text" class="search" value="작가명">
+                    <button class="sch_btn" type="submit">보내기</button>
+                </div>
+                <div class="nav__manu">
+                    <ul>
+                        <li><a href="#" id="red">월간 베스트</a></li>
+                        <li><a href="#">ALL</a></li>
+                        <!--                        <li><a href="#">리뷰 </a></li>-->
+                        <!--                        <li><a href="#">나도 작가</a></li>-->
+                        <li><a href="#">MY</a></li>
+                        <li><a href="#">공지 사항</a></li>
+                    </ul>
+                </div>
+                <div class="nav__member">
+                    <!--                    <a href="#">로그인</a>-->
+                    <input type="checkbox" id="menuicon"/>
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <!--                    사이드바-->
+                        <div class="sidebar_cont1">
+                            <a href="#">로그인</a>
+
+                        </div>
+                        <div class="sidebar_cont2">ee</div>
+                        <div class="sidebar_cont3">ee</div>
+                        <div class="sidebar_cont4">ee</div>
+                        <div class="sidebar_cont5">ee</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="header-sc">
+        <ul>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">최근 본 작품</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">관심 작품</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">내 작품</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--        <div class="content">-->
+
+    <!--                    공간2-->
+    <div class="wh_write_area">
+        <div class="write_area">
+            <div class="header-area">
+                <h2 class="htxt_new">새 작품쓰기</h2>
+            </div>
+            <div class="write_cont">
+<!--                <form id="novelWriteForm" action="/submit_novel" method="post" enctype="multipart/form-data">-->
+                <form id="novelWriteForm" action="/submit_novel" method="post">
+
+
+                    <fieldset>
+                        <!--                            <legend>새 작품 쓰기</legend>-->
+                        <ul class="write_form">
+                            <li>
+                                <h4 id="novelTitleDescription" class="sub_tit v2" style="display: block;">제목</h4>
+                            </li>
+                            <input type="text" id="inputNovelTitle" name="novelTitle" placeholder="제목을 입력해주세요"
+                                   class="input_txt" title="제목" value onkeydown="if(event.keyCode == 27) return false;">
+
+
+
+                            <li>
+                                <h4 class="sub_tit">장르</h4>
+                                <div id="genreSelect" class="select_list gener on">
+                                    <!-- 선택된 장르를 보여주는 영역 -->
+                                    <div id="selectedGenres"></div>
+                                    <a id="genreLayerBtn" href="#" class="selected_item NPI=a:genre">
+                                        <span id="selectedGenre" class="selected_item_txt"></span>
+                                        <!-- 장르 선택 드롭다운 목록 -->
+                                        <ul style="height: 344px;">
+                                            <li>
+                                                <h4 id="synopsisContentDescription" class="sub_tit v2" style="display: block;">작품 소개</h4>
+                                                <textarea cols="30" rows="5" id="inputSynopsisContent" name="SynopsisContent" class="txtarea" title="작품 소개" style="height: 500px" onkeydown="if(event.keyCode == 27) return false;" placeholder="작품소개를 입력해주세요"></textarea>
+                                            </li>
+                                            <li>
+                                                <!-- 장르 선택 드롭다운 목록 -->
+                                                <div class="genreDropdown">
+                                                    <select id="genreDropdown" name="genreType">
+                                                        <option value="판타지">판타지</option>
+                                                        <option value="로맨스">로맨스</option>
+                                                        <option value="무협">무협</option>
+                                                        <option value="스포츠">스포츠</option>
+                                                        <option value="대체역사">대체역사</option>
+                                                        <option value="퓨전">퓨전</option>
+                                                        <option value="추리">추리</option>
+                                                        <option value="공포">공포</option>
+                                                        <option value="사극">사극</option>
+                                                        <option value="현대판타지">현대판타지</option>
+                                                        <option value="밀리터리">밀리터리</option>
+                                                        <option value="라이트노벨">라이트노벨</option>
+                                                        <option value="게임">게임</option>
+
+                                                    </select>
+                                                    <button type="button" onclick="addGenre()">추가</button>
+                                                    <!-- 장르 추가 버튼 -->
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="input-image">
+                                    <h4 class="sub_tit">이미지 삽입</h4>
+                                    <input type="file" id="imageInput" accept="image/*">
+
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="pen-name">
+                            <h4 class="">필명 </h4>
+                            <input type="text" class="input-penname" placeholder="필명을 입력해주세요">
+                        </div>
+<!--                        <input type="hidden" id="selectedGenresInput" name="selectedGenres" value="" multiple>-->
+
+                        <div class="bt_area">
+                            <button type="button" class="but_cancle cancel_cancelWrite()">취소</button>
+                            <button type="submit" class="but_save save_saveNovel(N)">저장</button>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <main>
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+
+<script>
+    window.onload = function () {
+
+
+
+        function moveMutiSlide(num) {
+
+            multiSlides.style.left = -num * (multiSlideWidth + multiSlideMargin) + 'px';
+            currentIdx = num;
+        }
+
+        nextBtn.addEventListener('click', function () {
+            if (currentIdx < multiSlideCount - 6) {
+                moveMutiSlide(currentIdx + 1);
+            } else {
+                moveMutiSlide(0);
+            }
+        });
+
+        prevBtn.addEventListener('click', function () {
+            if (currentIdx > 0) {
+                moveMutiSlide(currentIdx - 1);
+            } else {
+                moveMutiSlide(multiSlideCount - 6);
+            }
+        });
+
+    }
+
+    const selectedGenresContainer = document.getElementById('selectedGenres');
+
+    // 장르 선택 드롭다운 목록
+    const genreDropdown = document.getElementById('genreDropdown');
+
+    // 저장 버튼
+    const saveBtn = document.querySelector('.but_save');
+
+
+    // 장르 추가 버튼 클릭 시 호출되는 함수
+    function addGenre() {
+        const selectedGenre = genreDropdown.value;
+
+        // 최대 두 개까지만 선택 가능하도록 확인
+        if (selectedGenresContainer.childElementCount < 2) {
+            // 선택된 장르를 보여주는 영역에 추가
+            const genreItem = document.createElement('div');
+            genreItem.className = 'selectedGenreItem';
+
+            // 장르 삭제 버튼 추가
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'deleteGenreBtn';
+            deleteBtn.textContent = 'X';
+            deleteBtn.addEventListener('click', function () {
+                // 장르 삭제 버튼 클릭 시 해당 장르 제거
+                genreItem.remove();
+
+                // 삭제된 장르를 드롭다운에 추가
+                const option = document.createElement('option');
+                option.value = selectedGenre;
+                option.text = selectedGenre;
+                genreDropdown.add(option);
+            });
+
+            // 장르명 추가
+            const genreName = document.createElement('span');
+            genreName.textContent = selectedGenre;
+
+            const selectedGenresInput = document.getElementById('selectedGenresInput');
+            selectedGenresInput.value += selectedGenre + ','; // 여러 개의 장르를 쉼표로 구분하여 추가
+
+
+
+            // 생성한 요소들을 장르 항목에 추가
+            genreItem.appendChild(deleteBtn);
+            genreItem.appendChild(genreName);
+            selectedGenresContainer.appendChild(genreItem);
+
+
+
+            // 선택된 장르를 드롭다운에서 제거
+            genreDropdown.remove(genreDropdown.selectedIndex);
+            console.log('장르 추가:', selectedGenre);
+        } else {
+            alert('최대 두 개까지만 선택 가능합니다.');
+        }
+    }
+
+
+    function insertImage() {
+        const imageInput = document.getElementById('imageInput');
+        const imageUrl = URL.createObjectURL(imageInput.files[0]);
+
+        // 여기에 이미지를 어떻게 처리할지 로직을 추가하면 됩니다.
+        // 예시로 이미지 URL을 콘솔에 출력
+        console.log('이미지 삽입:', imageUrl);
+    }
+
+
+</script>
+
+</body>
+</html>

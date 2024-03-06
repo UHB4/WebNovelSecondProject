@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/template_w.css"/>
+    <link rel="stylesheet" href="/css/stylemy.css">
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+</head>
+<body>
+<%-include('header.ejs')%>
+    <main>
+
+        <div class="contents container">
+<!--////////////////////////////////////////////////-->
+
+
+
+
+<!--/////////////////////////////////////////-->
+        </div>
+
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+<script>
+    window.onload = function(){
+
+//스크롤이 내려가면 네비바가 고정되게
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/login.css"/>
+    <!--    <link rel="stylesheet" href="tab_3.css">-->
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+<%-include('header.ejs')%>
+    <main>
+
+        <div class="contents container">
+
+            <div class="tab_boxs">
+
+
+
+                <input type="radio" name='log' id="tab1"checked><label for="tab1" class="tab_1">log-in</label><input type="radio"name='log' id="tab2"><label for="tab2"class="tab_2">회원가입</label><input type="radio"name='log' id="tab3"><label for="tab3" class="tab_3">일회용 인증</label><input type="radio"name='log' id="tab4"><label for="tab4" class="tab_4">QR코드</label>
+
+
+                <div class="log_in_box box1">
+
+                    <div class="log_in_wrap">
+                        <form id="log_form" action="/login" method="post">
+                            <h1>LOGIN</h1>
+
+                            <div class="input_box">
+                                <input type="text" placeholder="Username" name="username" required><span class="material-symbols-outlined">person</span>
+                            </div>
+
+                            <div class="input_box">
+                                <input type="password" placeholder="Password" name="password" required><span class="material-symbols-outlined">lock</span>
+                            </div>
+
+                            <div class="auto_find">
+                                <label><input type="checkbox">AUTO</label>
+                                <a href="#">비밀번호찾기</a>
+                            </div>
+
+                            <div class="submit_box">
+                                <button type="submit">로그인</button>
+                            </div>
+
+                            <div class="new">
+                                <p>계정이 없으신가요?
+                                    <label for="tab2" class="new">회원가입</label>
+                                </p>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="log_in_box box2">bb</div>
+                <div class="log_in_box box3">cc</div>
+                <div class="log_in_box box4">cc</div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+<script>
+    window.onload = function(){
+
+//스크롤이 내려가면 네비바가 고정되게
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

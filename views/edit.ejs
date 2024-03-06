@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/template_w.css"/>
+    <link rel="stylesheet" href="/css/stylemy.css">
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+</head>
+<body>
+<%-include('header.ejs')%>
+    <main>
+
+        <div class="contents container">
+<!--///////////////////////////////////////////////-->
+
+
+            <div class="board_wrap">
+                <div class="board_title">
+                    <strong>공지사항</strong>
+                    <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+                </div>
+                <div class="board_write_wrap">
+
+                    <form action="/editafter/<%= edit_conmnm.id %>" method="post">
+
+                    <div class="board_write">
+                        <div class="title">
+                            <dl>
+                                <dt>제목</dt>
+
+                                <dd><input type="text" name="title" value="<%= edit_conmnm.title%>"></dd>
+                            </dl>
+                        </div>
+                        <div class="info">
+                            <dl>
+                                <dt>글쓴이: <%= edit_conmnm.author%></dt>
+<!--                                <dt>글쓴이</dt>-->
+<!--                                <dd><input type="text" placeholder="글쓴이 입력" value=""></dd>-->
+                            </dl>
+<!--                            <dl>-->
+<!--                                <dt>비밀번호</dt>-->
+<!--                                <dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>-->
+<!--                            </dl>-->
+                        </div>
+                        <div class="cont">
+                            <textarea name="content" placeholder="내용 입력"><%= edit_conmnm.title%>
+                            </textarea>
+<!--                            <input type="text" name="content" value="< edit_conmnm.title">-->
+
+
+                        </div>
+                    </div>
+                    <div class="bt_wrap">
+                        <input type="submit"  class="on" value="수정하기">
+<!--                        <a href="view.html" class="on">수정(누루지마)</a>-->
+                        <a href="view.html">취소</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+<!--    ///////////////////////////////////////        -->
+        </div>
+
+    </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
+</div>
+
+<script>
+    window.onload = function(){
+
+//스크롤이 내려가면 네비바가 고정되게
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

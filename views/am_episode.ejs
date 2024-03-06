@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/am_episode.css"/>
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <header>
+
+    </header>
+    <nav>
+        <div id="nav" class="container">
+            <div class="nav_inner">
+                <div class="nav__logo">
+                    <a href="/home">WEB <em>소설</em></a>
+                </div>
+                <div class="nav__search">
+                    <input type="text" class="search" value="작가명">
+                    <button class="sch_btn" type="submit">보내기</button>
+                </div>
+                <div class="nav__manu">
+                    <ul>
+                        <li><a href="/all">ALL</a></li>
+                        <li><a href="/board">리뷰 </a></li>
+                        <!--                        <li><a href="#">리뷰 </a></li>-->
+                        <!--                        <li><a href="#">나도 작가</a></li>-->
+                        <li><a href="/my">MY</a></li>
+                        <li><a href="#">공지 사항</a></li>
+                    </ul>
+                </div>
+                <div class="nav__member">
+                    <!--                    <a href="#">로그인</a>-->
+                    <input type="checkbox" id="menuicon"/>
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <!--                    사이드바-->
+                        <div class="sidebar_cont1">
+                            <a href="#">로그인</a>
+
+                        </div>
+                        <div class="sidebar_cont2">ee</div>
+                        <div class="sidebar_cont3">ee</div>
+                        <div class="sidebar_cont4">ee</div>
+                        <div class="sidebar_cont5">ee</div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="novel-wrap">
+
+    <div class="novel-box">
+
+        <div class="novel-item">
+            <img src="<%=novel[0][6].replace('public\\', '/').replace(/\\/g, '/')%>" alt="Novel Image">
+            <div class="novel-info">
+                <div class="novel-title"><%=novel[0][0]%></div>
+                <div class="novel-author"><%=novel[0][4]%></div>
+            </div>
+            <div class="sort-buttons">
+                <!-- 최신순 정렬 버튼 -->
+                <button id="latest-sort" onclick="sortEpisodes('latest')">최신순 정렬</button>
+                <!-- 1화부터 정렬 버튼 -->
+                <button id="sequential-sort" onclick="sortEpisodes('sequential')">1화부터 정렬</button>
+            </div>
+        </div>
+
+        <% for(let i=0; i < novel.length; i++ ){%>
+        <div class="episode-box">
+
+            <ul class="list_type2">
+                <li id="volume45" class="volumeComment" value="45">
+                    <a href="/am_view?epId=<%= novel[i][5] %>" class="list_item">
+                        <div class="pic">
+                            <img src="#" alt="이미지">
+                        </div>
+                        <div class="list_info">
+                            <p class="subj"><%=novel[i][2]%>.</p>
+                            <span class="pen_name"><%=novel[i][4]%></span>
+                            <p class="rating">
+
+                                <span class="count">댓글 </span>
+                                <span id="detailComment">6</span>
+
+                                <span class="date"><%=novel[i][3]%></span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+                <%}%>
+
+
+
+            </ul>
+
+
+
+
+            </a>
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+<footer>
+
+</footer>
+</div>
+
+
+<script>
+    window.onload = function () {
+
+        // 스크롤이 내려가면 네비바가 고정되
+
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+        /////////////////cont1의 버튼식 슬라이드////////////////////
+
+
+
+
+    }
+
+    function sortEpisodes(order) {
+        // 현재 URL을 가져와서 쿼리 파라미터를 변경
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl);
+        url.searchParams.set('order', order);
+
+        // 변경된 URL로 리다이렉트
+        window.location.href = url.toString();
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

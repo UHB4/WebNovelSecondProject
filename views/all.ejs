@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <!--    폰트-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<%- include('header.ejs')%>
+
+
+
+    <div class="genre-sc">
+        <ul>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">랭킹</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">판타지</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">로맨스</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">무협</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">스포츠</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">대체역사</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">퓨전</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">현대판타지</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">게임</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">공포</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">사극</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">밀리터리</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class="sub_txt">라이트노벨</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div class="component_section type2">
+            <div class="component_head">
+                <div class="genre-icon" onclick="toggleDropdown()">로맨스 ▼</div>
+                <div class="dropdown" id="genreDropdown">
+                    <a href="#">로맨스</a>
+                    <a href="#">판타지</a>
+                    <a href="#">무협</a>
+                    <a href="#">스포츠</a>
+                    <a href="#">대체역사</a>
+                    <a href="#">퓨전</a>
+                    <a href="#">추리</a>
+                    <a href="#">공포</a>
+                    <a href="#">사극</a>
+                    <a href="#">현대판타지</a>
+                    <a href="#">밀리터리</a>
+                    <a href="#">라이트노벨</a>
+                    <a href="#">게임</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="ranking_list">
+    <div class="ranking_wrap_left">
+        <ul class="ranking_list_type3">
+            <% for (let i = 0; i < novel.length; i++) { %>
+                <li class="item">
+                    <a href="/am_episode?novelId=<%= novel[i][0] %>"> <!-- novel_id를 링크에 추가 -->
+                        <div class="thumbnail">
+                            <a href="/am_episode?novelId=<%= novel[i][0] %>"><img src="img/101.png" alt="이미지"></a>
+                        </div>
+                        <div class="info_area">
+                            <p class="ranking">
+                                <em class="rank"><%= i + 1 %>등</em>
+                            </p>
+                            <p class="title_group">
+                                <span class="title"><%= novel[i][1] %></span>
+                            </p>
+                            <p class="info_group">
+                                <span class="author"><%= novel[i][3] %></span>
+                                <span class="count">좋아요:<%= novel[i][6] %></span>
+                                <span class="count">조회수:<%= novel[i][7] %></span>
+                            </p>
+                            <p class="meta_data_group">
+                        <span class="count">
+                            "관심"
+                            <span>관심수</span>
+                        </span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+
+
+    </div>
+    <!--      ----------------------------- -------------------- 오른쪽 박스-->
+    <div class="ranking_wrap_right">
+        <ul class="ranking_list_type3">
+            <% for (let i = 0; i < novel.length; i++) { %>
+                <li class="item">
+                    <a href="/am_episode?novelId=<%= novel[i][0] %>"> <!-- novel_id를 링크에 추가 -->
+                        <div class="thumbnail">
+                            <a href="/am_episode?novelId=<%= novel[i][0] %>"><img src="<%=novel[i][8].replace('public\\', '/').replace(/\\/g, '/')%>" alt="Novel Image">
+                            </a>
+                        </div>
+                        <div class="info_area">
+                            <p class="ranking">
+                                <em class="rank"><%= i + 1 %>등</em>
+                            </p>
+                            <p class="title_group">
+                                <span class="title"><%= novel[i][1] %></span>
+                            </p>
+                            <p class="info_group">
+                                <span class="author"><%= novel[i][3] %></span>
+                                <span class="count">좋아요:<%= novel[i][6] %></span>
+                                <span class="count">조회수:<%= novel[i][7] %></span>
+                            </p>
+                            <p class="meta_data_group">
+                        <span class="count">
+                            "관심"
+                            <span>관심수</span>
+                        </span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+
+
+
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<main>
+</main>
+<footer>
+    <div class="container"></div>
+</footer>
+</div>
+
+
+<script>
+    window.onload = function () {
+
+        // 스크롤이 내려가면 네비바가 고정되
+
+        window.addEventListener('scroll', function () {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                // console.log('Scrolling!')
+                // 스크롤 내리면 변할 모양
+
+                nav.style.backgroundColor = 'rgb(255,255,255)';
+                nav.style.borderBottom = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.borderTop = '2px solid rgba(0, 0, 0, 0.3)';
+                nav.style.zIndex = '1000';
+            } else {
+                nav.style.position = 'static';
+
+                // 다시 돌아오면 원상복구
+
+                nav.style.backgroundColor = ''; // 기존 스타일로 복원하려면 비워둘 수 있습니다.
+                // 필요에 따라 추가적인 스타일 속성을 여기에 추가할 수 있습니다.
+            }
+        });
+
+
+        /////////////////cont1의 버튼식 슬라이드////////////////////
+
+
+
+
+    }
+
+
+    // work_menu 버튼 스크립트
+
+    function goToLink(linkUrl) {
+        window.location.href = linkUrl;
+    }
+
+    // bt_area v2 버튼 스크립트
+    function submitFormAndGoToLink(link) {
+
+
+        // 폼을 제출
+        document.getElementById("writeForm").submit();
+
+        // 링크로 이동
+        window.location.href = link;
+    }
+
+
+    function toggleDropdown() {
+        var dropdown = document.getElementById("genreDropdown");
+        dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    }
+
+    // 클릭한 다른 곳에 대한 드롭다운 숨김
+    window.onclick = function(event) {
+        if (!event.target.matches('.genre-icon')) {
+            var dropdown = document.getElementById("genreDropdown");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        }
+    }
+</script>
+</body>
+</html>
